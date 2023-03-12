@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import React from "react";
 
-/* Allows the user to create a new deck */
 
-function CreateDeck({ createDeck }) {
+function DeckForm({ handleChange, handleSubmit, deck }) {
 
     const deck = { 
         id: "",
@@ -25,7 +22,8 @@ function CreateDeck({ createDeck }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} name="CreateDeck">
+        // <Breadcrumb CreateDeck={CreateDeck} isCreating={true} />
+    <>
         <div>
             <h1>Create Deck</h1>
             <div><label htmlFor="name">Name</label></div>
@@ -55,8 +53,8 @@ function CreateDeck({ createDeck }) {
             <Link to="/"><button type="cancel">Cancel</button></Link>
             <Link to="/decks/:deckId"><button type="submit">Submit</button></Link>
         </div>
-        </form>
+    </>
     );
 }
 
-export default CreateDeck;
+export default CardForm;

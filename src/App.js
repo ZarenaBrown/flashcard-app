@@ -4,11 +4,11 @@ import Header from "./Layout/Header";
 import Home from "./Layout/Home";
 import CreateDeck from "./Layout/Decks/CreateDeck";
 import Decks from "./Layout/Decks/Deck";
-import Study from "./Layout/Cards/Study";
 import EditDeck from "./Layout/Decks/EditDeck";
 import EditCard from "./Layout/Cards/EditCard";
 import CreateCard from "./Layout/Cards/CreateCard";
 import NotFound from "./Layout/NotFound";
+import StudyCard from "./Layout/Cards/StudyCard";
 
 
 /**
@@ -31,7 +31,7 @@ function App() {
           <CreateDeck />
         </Route>
         <Route exact path="/decks/:deckId/study">
-          <Study />
+          <StudyCard />
         </Route>
         <Route exact path="/decks/:deckId">
           <Decks />
