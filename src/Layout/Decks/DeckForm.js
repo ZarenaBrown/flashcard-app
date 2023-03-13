@@ -1,60 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 
-function DeckForm({ handleChange, handleSubmit, deck }) {
 
-    const deck = { 
-        id: "",
-        name: "",
-        description: "",
-    };
-
-    const [formData, setFormData] = useState({ ...deck });
-
-    const handleChange = ({ target }) => {
-        setFormData({ ...formData, [target.name]: target.value });
-    };
+function DeckForm({ onSubmit }) {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        createDeck(formData);
-        setFormData({ ...deck });
+        event.preventdefault();
+        onsubmit({ name, description });
     };
+
 
     return (
         // <Breadcrumb CreateDeck={CreateDeck} isCreating={true} />
-    <>
-        <div>
-            <h1>Create Deck</h1>
-            <div><label htmlFor="name">Name</label></div>
+    <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column" }}
+        >
+        <label htmlFor="name">Name</label>
             <input 
                 id="name"
                 name="name"
                 type="text"
                 placeholder="Deck Name"
                 required={true}
-                onChange={handleChange}
-                value={formData.name}
+                onChange={(event) => setName(event.target.value)}
+                value={name}
             />
-        </div>
-        <div>
-            <div><label htmlFor="description">Description</label></div>
+        <label htmlFor="description">Description</label>
             <textarea
                 id="description"
                 name="description"
                 type="text"
                 placeholder="Brief description of the deck"
                 required={true}
-                onChange={handleChange}
-                value={formData.description}
+                onChange={(event) => setDescription(event.target.value)}
+                value={description}
             />
-        </div>
-        <div>
             <Link to="/"><button type="cancel">Cancel</button></Link>
             <Link to="/decks/:deckId"><button type="submit">Submit</button></Link>
-        </div>
-    </>
+    </form>
     );
 }
 
-export default CardForm;
+export default DeckForm;

@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./Layout/Header";
 import Home from "./Layout/Home";
 import CreateDeck from "./Layout/Decks/CreateDeck";
-import Decks from "./Layout/Decks/Deck";
 import EditDeck from "./Layout/Decks/EditDeck";
 import EditCard from "./Layout/Cards/EditCard";
 import CreateCard from "./Layout/Cards/CreateCard";
 import NotFound from "./Layout/NotFound";
 import StudyCard from "./Layout/Cards/StudyCard";
+import DeckView from "./Layout/Decks/DeckView";
 
 
 /**
@@ -16,6 +16,32 @@ import StudyCard from "./Layout/Cards/StudyCard";
  */
 
 function App() {
+  const [cards, setCards] = useState([]);
+  const [decks, setDecks] = useState([]);
+
+  const handleAdd = (data) => {
+    setCards((prevCards) => [...prevCards, data]);
+  };
+
+  const handleAddDecks = (data) => {
+    setDecks((prevDecks) => [...prevDecks, data]);
+  }
+
+  const handleEdit = (index, data) => {
+    setCards((prevCards) => {
+      const clonedCards = JSON.parse(JSON.stringify(prevCards));
+      clonedCards[index] = data;
+      return clonedCards;
+    });
+  };
+
+  const handleEditDecks = (index, data) => {
+    setDecks((prevDecks) => {
+      const clonedDecks = JSON.parse(JSON.stringify(prevDecks));
+      clonedDecks[index] = data;
+      return clonedDecks;
+    });
+  }
 
   return (
     <div className="app-routes">
@@ -34,7 +60,7 @@ function App() {
           <StudyCard />
         </Route>
         <Route exact path="/decks/:deckId">
-          <Decks />
+          <DeckView />
         </Route>
         <Route exact path="/decks/:deckId/edit">
           <EditDeck />
