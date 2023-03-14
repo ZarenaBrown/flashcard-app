@@ -72,12 +72,12 @@ function StudyCard({cards}) {
         )
  }
     return (
-        <>
+        <div className="container" style={{ marginLeft: "80px"}}>
              <h3>Not enough cards.</h3>
-             <div className="row my-2">
+             <div className="row" style={{marginLeft: "3px"}}>
                  <p>You need at least 3 cards to study. This deck has {cards.length} cards.</p>
              </div>
-             <div className="row">
+             <div className="row" style={{marginLeft: "3px"}}>
                      <Link to={`/decks/${deckId}/cards/new`}>
                              <button className="btn btn-primary">
                                  <i class="bi bi-plus mr-1"></i>
@@ -85,7 +85,7 @@ function StudyCard({cards}) {
                              </button>
                         </Link>
                  </div>
-            </>
+            </div>
     )
 }
 
