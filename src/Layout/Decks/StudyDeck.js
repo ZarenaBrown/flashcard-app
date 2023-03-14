@@ -20,7 +20,7 @@ function StudyDeck() {
 
     }, [deckId]);
 
-    if(deck.length) {
+    if(deck.id) {
         return (
             <section>
                  <Breadcrumb link={`/decks/${deckId}`} linkName={deck.name} pageName={"Study"} />
