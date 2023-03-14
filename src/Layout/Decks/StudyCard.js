@@ -71,6 +71,7 @@ function StudyCard({cards}) {
             </div>
         )
     } else {
+        // console.log(cards.length);
         return (
             <>
             <h3>Not enough cards.</h3>

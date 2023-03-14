@@ -4,7 +4,7 @@ import { readDeck } from "../../utils/api/index";
 import StudyCard from "./StudyCard";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
-function StudyPage() {
+function StudyDeck() {
     const [deck, setDeck] = useState({});
     const {deckId} = useParams();
 
@@ -20,21 +20,23 @@ function StudyPage() {
 
     }, [deckId]);
 
-    if(Object.keys(deck).length) {
+    if(deck.length) {
         return (
             <section>
-                <Breadcrumb link={`/decks/${deckId}`} linkName={deck.name} pageName={"Study"} />
-                <div className="row" style={{marginLeft:"auto", paddingLeft: "80px"}}>
-                    <h2>Study: {deck.name}</h2>
-                </div>
+                 <Breadcrumb link={`/decks/${deckId}`} linkName={deck.name} pageName={"Study"} />
+                 <div className="row" style={{marginLeft:"auto", paddingLeft: "80px"}}>
+                     <h2>Study: {deck.name}</h2>
+                 </div>
                 <div className="row">
                     <StudyCard cards={deck.cards} />
-                </div>
+                 </div>
             </section>
         )
-            }
-            else return "Loading deck here..."
+    }
 
+    return (
+        <h3>Loading...</h3>
+    )
 }
 
-export default StudyPage;
+export default StudyDeck;

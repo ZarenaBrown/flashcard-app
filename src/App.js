@@ -8,7 +8,7 @@ import NotFound from "./Layout/NotFound";
 import { listDecks } from "./utils/api";
 import DeckList from "./Layout/Decks/DeckList";
 import DeckCreate from "./Layout/Decks/DeckCreate";
-import StudyPage from "./Layout/Decks/StudyDeck";
+import StudyDeck from "./Layout/Decks/StudyDeck";
 import StudyCard from "./Layout/Decks/StudyCard";
 import Deck from "./Layout/Decks/Deck";
 
@@ -52,7 +52,7 @@ function App() {
           <EditDeck />
         </Route>
         <Route path={"/decks/:deckId/study"}>
-          <StudyPage />
+          <StudyDeck />
         </Route>
         <Route exact path="/decks/:deckId">
           <Deck />
