@@ -1,6 +1,6 @@
 Flashcard App
 
-This application is an assignment for THinkful's Software Engineering Program. It is a customizable took for creating, editing, and (most importantly) studying decks of flashcards. 
+This application is an assignment for Thinkful's Software Engineering Program. It is a customizable took for creating, editing, and (most importantly) studying decks of flashcards. 
 
 Learning Objective:
 
