@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./Layout/Header";
-import Home from "./Layout/Home";
-import CreateDeck from "./Layout/Decks/CreateDeck";
 import EditDeck from "./Layout/Decks/EditDeck";
 import EditCard from "./Layout/Cards/EditCard";
 import CreateCard from "./Layout/Cards/CreateCard";
 import NotFound from "./Layout/NotFound";
-import StudyCard from "./Layout/Cards/StudyCard";
-import DeckView from "./Layout/Decks/DeckView";
+import { listDecks } from "./utils/api";
+import DeckList from "./Layout/Decks/DeckList";
+import DeckCreate from "./Layout/Decks/DeckCreate";
+import StudyPage from "./Layout/Decks/StudyDeck";
+import StudyCard from "./Layout/Decks/StudyCard";
+import Deck from "./Layout/Decks/Deck";
 
 
 /**
@@ -16,32 +18,13 @@ import DeckView from "./Layout/Decks/DeckView";
  */
 
 function App() {
-  const [cards, setCards] = useState([]);
   const [decks, setDecks] = useState([]);
 
-  const handleAdd = (data) => {
-    setCards((prevCards) => [...prevCards, data]);
-  };
-
-  const handleAddDecks = (data) => {
-    setDecks((prevDecks) => [...prevDecks, data]);
-  }
-
-  const handleEdit = (index, data) => {
-    setCards((prevCards) => {
-      const clonedCards = JSON.parse(JSON.stringify(prevCards));
-      clonedCards[index] = data;
-      return clonedCards;
-    });
-  };
-
-  const handleEditDecks = (index, data) => {
-    setDecks((prevDecks) => {
-      const clonedDecks = JSON.parse(JSON.stringify(prevDecks));
-      clonedDecks[index] = data;
-      return clonedDecks;
-    });
-  }
+  useEffect(() => {
+    const abortController = new AbortController();
+    listDecks(abortController.signal)
+    .then(setDecks)
+  }, [])
 
   return (
     <div className="app-routes">
@@ -51,25 +34,28 @@ function App() {
       <>
         <Switch>
         <Route exact path="/">
-          <Home />
+          <DeckList decks={decks}/>
         </Route>
-        <Route exact path="/decks/new">
-          <CreateDeck />
+        <Route path={"/decks/new"}>
+          <DeckCreate />
         </Route>
-        <Route exact path="/decks/:deckId/study">
+        <Route path={"/decks/:deckId/cards/:cardId/edit"}>
+          <EditCard />
+        </Route>
+        <Route path={"/decks/:deckId/cards/:cardId/study"}>
           <StudyCard />
         </Route>
-        <Route exact path="/decks/:deckId">
-          <DeckView />
-        </Route>
-        <Route exact path="/decks/:deckId/edit">
-          <EditDeck />
-        </Route>
-        <Route exact path="/decks/:deckId/cards/new">
+        <Route path={"/decks/:deckId/cards/new"}>
           <CreateCard />
         </Route>
-        <Route exact path="/decks/:deckId/cards/:cardId/edit">
-          <EditCard />
+        <Route path={"/decks/:deckId/edit"}>
+          <EditDeck />
+        </Route>
+        <Route path={"/decks/:deckId/study"}>
+          <StudyPage />
+        </Route>
+        <Route exact path="/decks/:deckId">
+          <Deck />
         </Route>
         <Route>
           <NotFound />

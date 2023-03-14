@@ -1,44 +1,34 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
 
 
-function CardForm({ onSubmit}) {
-    const [front, setFront] = useState("");
-    const [back, setBack] = useState("");
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onSubmit({ front, back });
-    };
+function CardForm({ formData, handleChange, handleSubmit }) {
 
     return (
-        // <Breadcrumb CreateCard={CreateCard} isCreating={true} />
-    <form 
-        onSubmit={handleSubmit} 
-        style={{ display: "flex", flexDirection: "column" }}
+    <form onSubmit={handleSubmit} 
+        style={{ display: "flex", flexDirection: "column", width:"100%"}}
     >
         <label htmlFor="label">Front</label>
-        <textarea display="flex" flex-direction="column"
+        <textarea 
             id="front"
             name="front"
-            type="text"
-            placeholder="Front side of card"
-            required={true}
-            onChange={(event) => setFront(event.target.value)}
-            value={front}
+            className="form-control"
+            placeholder="Front of card"
+            required
+            onChange={handleChange}
+            value={formData.front}
+            rows="2"
         />
-            <label htmlFor="label">Back</label>
+        <label htmlFor="label">Back</label>
         <textarea 
             id="back"
             name="back"
-            type="text"
-            placeholder="Back side of the card"
-            required={true}
-            onChange={(event) => setBack(event.target.value)}
-            value={back}
+            className="form-control"
+            placeholder="Back of card"
+            required
+            onChange={handleChange}
+            value={formData.back}
+            rows="2"
         />
-            <button type="done">Done</button>
-            <button type="save">Save</button>
     </form>
     );
 }
