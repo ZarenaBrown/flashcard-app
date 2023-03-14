@@ -70,25 +70,23 @@ function StudyCard({cards}) {
             </div>
             </div>
         )
-    } else {
-        // console.log(cards.length);
-        return (
-            <>
-            <h3>Not enough cards.</h3>
-            <div className="row my-2">
-                <p>You need at least 3 cards to study. This deck has {cards} cards.</p>
-            </div>
-            <div className="row">
-                    <Link to={`/decks/${deckId}/cards/new`}>
-                            <button className="btn btn-primary">
-                                <i class="bi bi-plus mr-1"></i>
-                                Add Card
-                            </button>
+ }
+    return (
+        <>
+             <h3>Not enough cards.</h3>
+             <div className="row my-2">
+                 <p>You need at least 3 cards to study. This deck has {cards.length} cards.</p>
+             </div>
+             <div className="row">
+                     <Link to={`/decks/${deckId}/cards/new`}>
+                             <button className="btn btn-primary">
+                                 <i class="bi bi-plus mr-1"></i>
+                                 Add Card
+                             </button>
                         </Link>
-                </div>
+                 </div>
             </>
-        )
-    }
+    )
 }
 
 export default StudyCard;
