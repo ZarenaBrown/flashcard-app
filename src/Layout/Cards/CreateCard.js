@@ -30,6 +30,8 @@ function CreateCard() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+            cardCreate();
+        }
 
         async function cardCreate() {
             try {
@@ -40,9 +42,7 @@ function CreateCard() {
                     throw error;
                 }
             }
-            cardCreate();
         }
-    }
 
     useEffect(() => {
 

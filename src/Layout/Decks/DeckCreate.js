@@ -20,13 +20,19 @@ function DeckCreate() {
         setDescription(event.target.value);
     }
     
-    const handleSubmit = async (event) => {
+
+    const handleSubmit = (event) => {
         event.preventDefault();
+        handleCreateDeck();
+    }
+
+    const handleCreateDeck = async () => {
         const res = await createDeck({ name, description });
         setName("");
         setDescription("");
         history.push(`/decks/${res.id}`);
-    }
+        window.location.reload();
+    } 
 
     return (
         <>
